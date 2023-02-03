@@ -1,5 +1,25 @@
 # src/main/resources/application.yml 설정파일
 spring:
+  profiles:
+    group:
+      "local" : "local_config,common"
+      "prod" : "prod_config,common"
+
+---
+spring:
+  config:
+    active:
+      on-profile: "common"
+
+# local, prod 공통 설정
+server:
+  port: 8080
+---
+#local_config
+spring:
+  config:
+    active:
+      on-profile: "local_config"
   datasource:
     url: jdbc:mysql://mgs-mysql-0821.cw62tn0po7ui.ap-northeast-2.rds.amazonaws.com:3306/JENGA_DB
     username: jengauser
@@ -11,8 +31,26 @@ spring:
     properties:
       hibernate:
         format_sql: true
-#        dialect: org.hibernate.dialect.MariaDBDialect
         dialect: org.hibernate.dialect.MySQL5Dialect
 logging.level:
   org.hibernate.sql: debug
-
+---
+#prod_config
+spring:
+  config:
+    active:
+      on-profile: "prod_config"
+  datasource:
+    url: jdbc:mysql://mgs-mysql-0821.cw62tn0po7ui.ap-northeast-2.rds.amazonaws.com:3306/JENGA_DB
+    username: jengauser
+    password: test1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQL5Dialect
+logging.level:
+  org.hibernate.sql: error

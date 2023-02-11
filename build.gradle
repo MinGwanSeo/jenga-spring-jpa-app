@@ -25,16 +25,11 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	implementation group: 'org.javassist', name: 'javassist', version: '3.15.0-GA'
 }
 
-// spring-boot 2.5.0 이상 버전의 경우, gradle 로 빌드하면, jar 파일이 2개 생성된다
-// 1. 앱이름.jar
-// 2. 앱이름-plain.jar
-// 2번 생성을 막기 위함
 jar {
 	enabled = false
 }

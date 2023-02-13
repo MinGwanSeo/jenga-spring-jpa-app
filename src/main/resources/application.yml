@@ -21,9 +21,9 @@ spring:
     active:
       on-profile: "local_config"
   datasource:
-    url: jdbc:mysql://mgs-mysql-0821.cw62tn0po7ui.ap-northeast-2.rds.amazonaws.com:3306/JENGA_DB
-    username: jengauser
-    password: test1234
+    url: jdbc:mysql://localhost:3306/test_db?useSSL=false&allowPublicKeyRetrieval=true/JENGA_DB
+    username: root
+    password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:

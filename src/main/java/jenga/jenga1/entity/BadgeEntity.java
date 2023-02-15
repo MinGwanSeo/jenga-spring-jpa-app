@@ -1,4 +1,4 @@
-package jenga.jenga1.model;
+package jenga.jenga1.entity;
 
 import javax.persistence.*;
 

@@ -1,4 +1,4 @@
-package jenga.jenga1.model;
+package jenga.jenga1.entity;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -11,6 +11,9 @@ public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long user_id;
+
+    @Column(length = 100, nullable = false)
+    private String user_name;
 
     @Column(length = 255, nullable = false)
     private String avatar_url;

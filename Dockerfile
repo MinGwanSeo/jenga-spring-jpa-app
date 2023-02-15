@@ -1,27 +1,19 @@
-FROM gradle:jdk11 as builder
+FROM gradle:jdk11
 
-WORKDIR /build
 
-# 그래들 파일이 변경되었을 때만 새롭게 의존패키지 다운로드 받게함.
-COPY build.gradle settings.gradle /build/
-RUN gradle build -x test --parallel --continue > /dev/null 2>&1 || true
+# 서버에서 jar 파일 생성
+CMD java -jar -Dspring.profiles.active=prod build/libs/jenga1-0.0.1-SNAPSHOT.jar
 
-# 빌더 이미지에서 애플리케이션 빌드
-COPY . /build
-RUN gradle build -x test --parallel
-
-# APP
-FROM openjdk:11.0-slim
 WORKDIR /app
 
-# 빌더 이미지에서 jar 파일만 복사
-COPY --from=builder /build/build/libs/jenga1-0.0.1-SNAPSHOT.jar .
+# jar 파일을 도커컨테이너에 copy
+COPY ./build/libs/jenga1-0.0.1-SNAPSHOT.jar /usr/local/jenga1-0.0.1-SNAPSHOT.jar
+
+RUN gradle clean build --no-daemon
 
 EXPOSE 8080
+# 권한 수정
 
-# root 대신 nobody 권한으로 실행
-#USER nobody
-#CMD java -jar -Djava.security.egd=file:/dev/./urandom -Dsun.net.inetaddr.ttl=0 jenga1-0.0.1-SNAPSHOT.jar
+RUN chmod +x /usr/local/jenga1-0.0.1-SNAPSHOT.jar
 
-RUN chmod +x jenga1-0.0.1-SNAPSHOT.jar
-CMD java -jar jenga1-0.0.1-SNAPSHOT.jar
+CMD java -jar build/libs/jenga1-0.0.1-SNAPSHOT.jar

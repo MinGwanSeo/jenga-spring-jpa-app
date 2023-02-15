@@ -1,12 +1,15 @@
 FROM gradle:jdk11
 
+
 # 서버에서 jar 파일 생성
-CMD java -jar c build/libs/jenga1-0.0.1-SNAPSHOT.jar
+CMD java -jar -Dspring.profiles.active=local build/libs/jenga1-0.0.1-SNAPSHOT.jar
+
+WORKDIR /app
 
 # jar 파일을 도커컨테이너에 copy
 COPY ./build/libs/jenga1-0.0.1-SNAPSHOT.jar /usr/local/jenga1-0.0.1-SNAPSHOT.jar
 
-WORKDIR /usr/local
+RUN gradle clean build --no-daemon
 
 EXPOSE 8080
 # 권한 수정

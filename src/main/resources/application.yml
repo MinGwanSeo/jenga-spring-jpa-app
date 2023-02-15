@@ -8,9 +8,11 @@ spring:
 ---
 spring:
   config:
-    active:
-      on-profile: "common"
-
+    activate:
+      on-profile: common
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
 # local, prod 공통 설정
 server:
   port: 8080
@@ -18,39 +20,47 @@ server:
 #local_config
 spring:
   config:
-    active:
-      on-profile: "local_config"
+    activate:
+      on-profile: local_config
   datasource:
-    url: jdbc:mysql://localhost:3306/test_db?useSSL=false&allowPublicKeyRetrieval=true/JENGA_DB
+    url: jdbc:mysql://localhost:33061/JENGA_DB?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
-    hibernate:
-      ddl-auto: create
     properties:
       hibernate:
+#        하이버네이트가 실행한 모든 SQL문을 콘솔로 출력
         format_sql: true
-        dialect: org.hibernate.dialect.MySQL5Dialect
-logging.level:
-  org.hibernate.sql: debug
+#        SQL문을 가독성 있게 표현
+        show_sql: true
+#        디버깅 정보 출력
+        use_sql_comments: true
+#        데이터베이스 스키마 자동 생성
+        hbm2ddl:
+          auto: create-drop
+logging:
+  level:
+    org.hibernate: info
 ---
 #prod_config
 spring:
   config:
-    active:
-      on-profile: "prod_config"
+    activate:
+      on-profile: prod_config
   datasource:
     url: jdbc:mysql://mgs-mysql-0821.cw62tn0po7ui.ap-northeast-2.rds.amazonaws.com:3306/JENGA_DB
     username: jengauser
     password: test1234
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
-    hibernate:
-      ddl-auto: validate
     properties:
       hibernate:
-        format_sql: true
-        dialect: org.hibernate.dialect.MySQL5Dialect
-logging.level:
-  org.hibernate.sql: error
+        format_sql: false
+        show_sql: false
+        use_sql_comments: false
+        hbm2ddl:
+          auto: validate
+logging:
+  level:
+    org.hibernate: error

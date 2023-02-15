@@ -20,8 +20,5 @@ COPY --from=builder /build/build/libs/jenga1-0.0.1-SNAPSHOT.jar .
 EXPOSE 8080
 
 # root 대신 nobody 권한으로 실행
-#USER nobody
-#CMD java -jar -Djava.security.egd=file:/dev/./urandom -Dsun.net.inetaddr.ttl=0 jenga1-0.0.1-SNAPSHOT.jar
-
-RUN chmod +x jenga1-0.0.1-SNAPSHOT.jar
-CMD java -jar jenga1-0.0.1-SNAPSHOT.jar
+USER nobody
+CMD java -jar -Dspring.profiles.active=prod -Djava.security.egd=file:/dev/./urandom -Dsun.net.inetaddr.ttl=0 jenga1-0.0.1-SNAPSHOT.jar

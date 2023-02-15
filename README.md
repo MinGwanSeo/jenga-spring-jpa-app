@@ -20,7 +20,7 @@
   - mysql 이미지를 mysql_container 라는 이름으로 컨테이너를 만든다.
   - m1 mac 인 경우, --platform linux/amd64 옵션을 추가해준다.
     ```
-    docker run --platform linux/amd64 -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root --name mysql_container mysql
+    docker run --platform linux/amd64 -d -p 33061:3306 -e MYSQL_ROOT_PASSWORD=root --name mysql_container mysql
     ```
 
 ## 2. Dockerfile 로 애플리케이션 이미지 만들기

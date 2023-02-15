@@ -1,8 +1,11 @@
 package jenga.jenga1.service.impl;
 
+import jenga.jenga1.model.JengaVO;
 import jenga.jenga1.service.jengaService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,21 +13,9 @@ import java.util.Map;
 public class jengaServiceImpl implements jengaService {
 
     @Override
-    public Map<String, Object> getJengaData() {
-        Map<String, Object> jsonObject = new HashMap<>();
-        jsonObject.put("apiVersion", "1.0.0");
-        jsonObject.put("updated", "2023-02-08");
-        jsonObject.put("result", true);
-        jsonObject.put("status", 200);
-        jsonObject.put("around_users_number", 10);
+    public JengaVO getJengaData() {
+        JengaVO jengaVO = new JengaVO();
 
-        Map<String, Object> userData = new HashMap<>();
-
-//        Map<String, Object> usersAllData = new HashMap<>();
-
-//        usersAllData .put("user", );
-//        jsonObject.put("data", usersAllData );
-
-        return jsonObject;
+        return jengaVO;
     }
 }

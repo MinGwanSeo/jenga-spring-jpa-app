@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:33061/JENGA_DB?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8&serverTimeZone=Asia/Seoul
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    properties:
+      hibernate:
+#        하이버네이트가 실행한 모든 SQL문을 콘솔로 출력
+        format_sql: true
+#        SQL문을 가독성 있게 표현
+        show_sql: true
+#        디버깅 정보 출력
+        use_sql_comments: true
+#        데이터베이스 스키마 자동 생성
+        hbm2ddl:
+          auto: create-drop
+logging:
+  level:
+    org.hibernate: info

@@ -36,3 +36,19 @@ docker build -t jenga-springboot-app:0.0.1 .
 ```
 docker run -d --name jenga-api-server -p 8080:8080 jenga-springboot-app:0.0.1
 ```
+
+<hr>
+
+# api 목록
+### FE -> Spring Api
+- username 으로, 유저정보 조회하는 GET 
+- username, number 로 유저 정보, number 만큼의 유저 정보들을 조회하는 GET
+
+### Nestjs Api -> Spring Api
+- 모든 username 조회하는 GET
+- score 계산 후, PUT
+- 오늘 커밋 여부, PUT
+
+### Spring Api -> Nestjs Api
+- 유저 정보 GET
+- 오늘 커밋 여부 GET

@@ -4,10 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import net.bytebuddy.dynamic.loading.InjectionClassLoader;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -38,7 +38,6 @@ public class User {
     @Column
     private int overallScore;
 
-
-    private ArrayList<UsersBadge> usersBadges;
-
+    @OneToMany(mappedBy = "user")
+    List<UsersBadge> usersBadges = new ArrayList<>();
 }

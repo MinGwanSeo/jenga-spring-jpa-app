@@ -1,41 +1,37 @@
 package jenga.jenga1.controller;
 
-import jenga.jenga1.model.JengaVO;
-import jenga.jenga1.service.jengaService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.Map;
+import java.util.Set;
 
-@RestController // json 형태 겨로가값을 반환해줌, @ResponseBody가 필요없음
-@RequiredArgsConstructor // final 객체를 Constructor Injection 해줌.
-@RequestMapping("/jenga/v1")
+@RestController // json 형태 결과 값을 반환해줌
+@RequestMapping("/jenga-api/v1")
 public class jengaController {
 
     @Autowired
-    private jengaService jengaService;
 
 
-    @GetMapping("/getStringMethod")
+    @GetMapping(value = "/getStringMethod")
     public String getRequest() {
         return "jenga Start!";
     }
 
-    @GetMapping("/getParam")
-    public String getParameter(@RequestParam(name = "parm1") String parm1) {
-        return "parm1 : " + parm1;
+    @GetMapping(value = "/user")
+    public String getUser(@RequestParam Map<String, String> param) {
+        String[] userParamArray = new String[] {"userName", "aroundUserNumber"};
+        param.forEach((key, value) -> {
+            System.out.println(key);
+            System.out.println(value);
+        });
+        Set<String> set = param.keySet();
+        if (set.contains(userParamArray[0])) { // url parms 에서
+//            TODO : 예외처리 필요함.
+            System.out.println("error! userName 이 없습니다.");
+        } else {
+
+        }
     }
 
-    @GetMapping("/user")
-    public JengaVO getUser(@RequestParam(name = "username") String user_name) {
-
-        JengaVO jengaVO = jengaService.getJengaData();
-        jengaVO.setApi_version("1.0");
-        jengaVO.setUpdated(LocalDate.of(2023, 2, 15));
-        jengaVO.setResult(true);
-
-        return jengaVO;
-    }
 }

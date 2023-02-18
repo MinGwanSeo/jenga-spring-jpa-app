@@ -1,8 +1,8 @@
-package jenga.jenga1.service.impl;
+package jenga.jenga.service.impl;
 
-import jenga.jenga1.dto.UserDTO;
-import jenga.jenga1.model.User;
-import jenga.jenga1.service.UserService;
+import jenga.jenga.model.User;
+import jenga.jenga.dto.UserDTO;
+import jenga.jenga.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.w3c.dom.UserDataHandler;

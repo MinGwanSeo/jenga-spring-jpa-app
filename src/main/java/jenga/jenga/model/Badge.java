@@ -1,4 +1,4 @@
-package jenga.jenga1.model;
+package jenga.jenga.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,6 +21,6 @@ public class Badge {
     @Column
     private String name;
 
-    @Column(name = "img_url")
+    @Column
     private String imgUrl;
 }

@@ -1,4 +1,4 @@
-package jenga.jenga1.service;
+package jenga.jenga.service;
 
 public class BadgeService {
 }

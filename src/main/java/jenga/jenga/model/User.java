@@ -1,4 +1,4 @@
-package jenga.jenga1.model;
+package jenga.jenga.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import net.bytebuddy.dynamic.loading.InjectionClassLoader;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 
 @Data
 @NoArgsConstructor
@@ -19,22 +20,25 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "user_name")
+    @Column
     private String userName;
 
-    @Column(name = "avatar_u")
+    @Column
     private String avatarUrl;
 
-    @Column(name = "commit_score")
+    @Column
     private int commitScore;
 
-    @Column(name = "issue_score")
+    @Column
     private int issueScore;
 
-    @Column(name = "follower_score")
+    @Column
     private int followerScore;
 
-    @Column(name = "overall_score")
+    @Column
     private int overallScore;
+
+
+    private ArrayList<UsersBadge> usersBadges;
 
 }

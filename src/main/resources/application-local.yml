@@ -15,7 +15,10 @@ spring:
         use_sql_comments: true
 #        데이터베이스 스키마 자동 생성
         hbm2ddl:
-          auto: create-drop
+          auto: update
+    hibernate:
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
 logging:
   level:
     org.hibernate: info

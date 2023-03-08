@@ -1,5 +1,6 @@
 package jenga.jenga.controllers;
 
+import jenga.jenga.exceptions.ErrorResponse;
 import jenga.jenga.services.BaseService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
